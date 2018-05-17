@@ -279,4 +279,76 @@ describe('ensureLoggedIn', () => {
       });
     });
   });
+  
+  
+  
+  describe('middleware with a url and express-session', () => {
+    const redirectTo = '/signin';
+    const middleware = ensureLoggedIn(redirectTo);
+    let storedSession;
+    const sessionStore = {
+      save: async data => {
+        // sleep 100 ms to simulate IO delay
+        await new Promise(resolve => setTimeout(resolve, 100));
+        storedSession = data;
+      },
+    };
+    class Session {
+      async save(callback) {
+        await sessionStore.save(this);
+        callback();
+      };
+    };
+    class MockRequestWithSession extends MockRequest {
+      constructor() {
+        super(...arguments);
+        this.session = new Session();
+      };
+    };
+    class MockResponseWithSession extends MockResponse {
+      redirect() {
+        Object.freeze(storedSession);
+        MockResponse.prototype.redirect.apply(this, arguments);
+      };
+    };
+    
+    
+    describe('when handling a request that is not authenticated', () => {
+      const url = '/foo';
+      let err, req, res;
+      let sessionBeforeRedirect;
+      before(async () => {
+        ({err, req, res} = await new Promise(resolve => {
+          let req = new MockRequestWithSession();
+          req.url = url;
+          req.isAuthenticated = (() => false);
+          
+          let res = new MockResponseWithSession();
+          res.done = (() => {
+            resolve({req, res});
+          });
+          
+          let next = (err => {
+            resolve({err: new Error('should not be called')});
+          });
+          
+          process.nextTick(() => {
+            middleware(req, res, next);
+          });
+        }));
+      });
+      
+      it('should not error', () => {
+        expect(err).to.be.undefined;
+      });
+      
+      it('should redirect', () => {
+        expect(res._redirect).to.be.a('string').that.equals(redirectTo);
+      });
+      
+      it('should set and save returnTo before redirect', () => {
+        expect(storedSession.returnTo).to.be.a('string').that.equals(url);
+      });
+    });
+  });
 });
