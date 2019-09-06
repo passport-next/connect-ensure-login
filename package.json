@@ -31,10 +31,11 @@
   "main": "./lib",
   "dependencies": {},
   "devDependencies": {
-    "vows": "0.6.x"
+    "chai": "^4.2.0",
+    "mocha": "^6.2.0"
   },
   "scripts": {
-    "test": "NODE_PATH=lib node_modules/.bin/vows test/*-test.js"
+    "test": "mocha"
   },
   "engines": {
     "node": ">= 0.4.0"

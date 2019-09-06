@@ -60,7 +60,7 @@ what happens:
 ## Tests
 
     $ npm install --dev
-    $ make test
+    $ npm test
 
 [![Build Status](https://secure.travis-ci.org/passport-next/connect-ensure-login.svg?branch=master)](http://travis-ci.org/passport-next/connect-ensure-login)
 [![Coverage Status](https://coveralls.io/repos/github/passport-next/connect-ensure-login/badge.svg?branch=master)](https://coveralls.io/github/passport-next/connect-ensure-login?branch=master)
