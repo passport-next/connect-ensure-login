@@ -7,7 +7,7 @@ page that was originally requested.
 
 ## Install
 
-    $ npm install connect-ensure-login
+    $ npm install @passport-next/connect-ensure-login
 
 ## Usage
 
@@ -21,14 +21,14 @@ configured.  A user must be logged in before accessing this page.
       function(req, res) {
         res.render('settings', { user: req.user });
       });
-      
+
 If a user is not logged in when attempting to access this page, the request will
 be redirected to `/login` and the original request URL (`/settings`) will be
 saved to the session at `req.session.returnTo`.
 
 #### Log In and Return To
 
-This middleware integrates seamlessly with [Passport](http://passportjs.org/).
+This middleware integrates seamlessly with [Passport](https://github.com/passport-next/passport).
 Simply mount Passport's `authenticate()` middleware at the login route.
 
     app.get('/login', function(req, res) {
@@ -36,7 +36,7 @@ Simply mount Passport's `authenticate()` middleware at the login route.
     });
 
     app.post('/login', passport.authenticate('local', { successReturnToOrRedirect: '/', failureRedirect: '/login' }));
-    
+
 Upon log in, Passport will notice the `returnTo` URL saved in the session and
 redirect the user back to `/settings`.
 
@@ -62,14 +62,19 @@ what happens:
     $ npm install --dev
     $ npm test
 
-[![Build Status](https://secure.travis-ci.org/jaredhanson/connect-ensure-login.png)](http://travis-ci.org/jaredhanson/connect-ensure-login)
+[![Build Status](https://secure.travis-ci.org/passport-next/connect-ensure-login.svg?branch=master)](http://travis-ci.org/passport-next/connect-ensure-login)
+[![Coverage Status](https://coveralls.io/repos/github/passport-next/connect-ensure-login/badge.svg?branch=master)](https://coveralls.io/github/passport-next/connect-ensure-login?branch=master)
+<!--[![Maintainability](https://api.codeclimate.com/v1/badges/<token>/maintainability)](https://codeclimate.com/github/passport-next/connect-ensure-login/maintainability)-->
+[![Dependencies](https://david-dm.org/passport-next/connect-ensure-login.png)](https://david-dm.org/passport-next/connect-ensure-login)
 
 ## Credits
 
-  - [Jared Hanson](http://github.com/jaredhanson)
+  - [Jared Hanson](https://github.com/jaredhanson)
+  - [Yuping Zuo](https://github.com/zypA13510)
 
 ## License
 
 [The MIT License](http://opensource.org/licenses/MIT)
 
 Copyright (c) 2012-2013 Jared Hanson <[http://jaredhanson.net/](http://jaredhanson.net/)>
+Copyright (c) 2018-2019 Yuping Zuo
