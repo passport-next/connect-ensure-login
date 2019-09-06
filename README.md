@@ -64,7 +64,7 @@ what happens:
 
 [![Build Status](https://secure.travis-ci.org/passport-next/connect-ensure-login.svg?branch=master)](http://travis-ci.org/passport-next/connect-ensure-login)
 [![Coverage Status](https://coveralls.io/repos/github/passport-next/connect-ensure-login/badge.svg?branch=master)](https://coveralls.io/github/passport-next/connect-ensure-login?branch=master)
-<!--[![Maintainability](https://api.codeclimate.com/v1/badges/<token>/maintainability)](https://codeclimate.com/github/passport-next/connect-ensure-login/maintainability)-->
+[![Maintainability](https://api.codeclimate.com/v1/badges/cd841c0f5037adb4d874/maintainability)](https://codeclimate.com/github/passport-next/connect-ensure-login/maintainability)
 [![Dependencies](https://david-dm.org/passport-next/connect-ensure-login.png)](https://david-dm.org/passport-next/connect-ensure-login)
 
 ## Credits
