@@ -60,7 +60,7 @@ what happens:
 ## Tests
 
     $ npm install --dev
-    $ make test
+    $ npm test
 
 [![Build Status](https://secure.travis-ci.org/jaredhanson/connect-ensure-login.png)](http://travis-ci.org/jaredhanson/connect-ensure-login)
 
