@@ -1,6 +1,5 @@
-'use strict'
+'use strict';
 
-const {expect} = require('chai');
 const login = require('../lib/index');
 
 
@@ -10,7 +9,7 @@ describe('connect-ensure-login', () => {
       expect(login.ensureLoggedIn).to.be.a('function')
         .that.equals(login.ensureAuthenticated);
     });
-    
+
     it('should export ensureLoggedOut', () => {
       expect(login.ensureLoggedOut).to.be.a('function')
         .that.equals(login.ensureNotLoggedIn)
